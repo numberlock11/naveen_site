@@ -1,21 +1,21 @@
-import { BlogPosts } from 'app/components/posts'
+import { BlogPosts } from "app/components/posts";
 
 export default function Page() {
   return (
     <section>
       <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-        My Portfolio
+        Hi. I'm Naveen.
       </h1>
       <p className="mb-4">
-        {`I'm a Vim enthusiast and tab advocate, finding unmatched efficiency in
-        Vim's keystroke commands and tabs' flexibility for personal viewing
-        preferences. This extends to my support for static typing, where its
-        early error detection ensures cleaner code, and my preference for dark
-        mode, which eases long coding sessions by reducing eye strain.`}
+        <p className="mb-4">
+          {`I build software products that people need and love for a living, occasionally wield the camera for fun, promised myself to write more this year than year before, wanderlust wife’s travel companion, part-time instagram father, full-time baby sleep trainer.`}
+        </p>
+        {`
+        Regret to inform, we've been reverse sleep trained by our 3 year old - Zian. He has now converted our bed to his crib. It's collectively a family crib now. I've stopped cribbing about it. Yes I've got my dad jokes as well now.`}
       </p>
       <div className="my-8">
         <BlogPosts />
       </div>
     </section>
-  )
+  );
 }
