@@ -63,9 +63,19 @@ function slugify(str) {
 function createHeading(level) {
   return ({ children }) => {
     let slug = slugify(children)
+    let className = ''
+    
+    if (level === 1) {
+      className = 'text-3xl font-bold mb-8'
+    } else if (level === 2) {
+      className = 'text-2xl font-semibold tracking-tighter mt-8 mb-4'
+    } else if (level === 3) {
+      className = 'font-bold text-xl mt-6 mb-3'
+    }
+    
     return React.createElement(
       `h${level}`,
-      { id: slug },
+      { id: slug, className },
       [
         React.createElement('a', {
           href: `#${slug}`,
@@ -78,6 +88,18 @@ function createHeading(level) {
   }
 }
 
+function Paragraph({ children }) {
+  return <p className="leading-relaxed mb-6">{children}</p>
+}
+
+function Blockquote({ children }) {
+  return (
+    <blockquote className="border-l-4 border-gray-400 pl-4 my-6 italic text-gray-600">
+      {children}
+    </blockquote>
+  )
+}
+
 let components = {
   h1: createHeading(1),
   h2: createHeading(2),
@@ -86,6 +108,8 @@ let components = {
   h5: createHeading(5),
   h6: createHeading(6),
   a: CustomLink,
+  p: Paragraph,
+  blockquote: Blockquote,
   table: Table,
   Image: MDXImage,
   img: MDXImage,
@@ -95,9 +119,11 @@ let components = {
 
 export function CustomMDX(props) {
   return (
-    <MDXRemote
-      {...props}
-      components={{ ...components, ...props.components }}
-    />
+    <div className="prose prose-lg leading-relaxed">
+      <MDXRemote
+        {...props}
+        components={{ ...components, ...props.components }}
+      />
+    </div>
   )
 }
