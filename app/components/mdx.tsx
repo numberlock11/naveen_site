@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import React from 'react'
+import { MDXImage } from './mdx-image'
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -44,10 +44,6 @@ function CustomLink(props) {
   return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
 
-function RoundedImage(props) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />
-}
-
 function Code({ children, ...props }) {
   let codeHTML = highlight(children)
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
@@ -57,15 +53,15 @@ function slugify(str) {
   return str
     .toString()
     .toLowerCase()
-    .trim() // Remove whitespace from both ends of a string
-    .replace(/\s+/g, '-') // Replace spaces with -
-    .replace(/&/g, '-and-') // Replace & with 'and'
-    .replace(/[^\w\-]+/g, '') // Remove all non-word characters except for -
-    .replace(/\-\-+/g, '-') // Replace multiple - with single -
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/&/g, '-and-')
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\-\-+/g, '-')
 }
 
 function createHeading(level) {
-  const Heading = ({ children }) => {
+  return ({ children }) => {
     let slug = slugify(children)
     return React.createElement(
       `h${level}`,
@@ -80,10 +76,6 @@ function createHeading(level) {
       children
     )
   }
-
-  Heading.displayName = `Heading${level}`
-
-  return Heading
 }
 
 let components = {
@@ -93,17 +85,19 @@ let components = {
   h4: createHeading(4),
   h5: createHeading(5),
   h6: createHeading(6),
-  Image: RoundedImage,
   a: CustomLink,
+  table: Table,
+  Image: MDXImage,
+  img: MDXImage,
+  pre: ({ children }) => <div className="highlight">{children}</div>,
   code: Code,
-  Table,
 }
 
 export function CustomMDX(props) {
   return (
     <MDXRemote
       {...props}
-      components={{ ...components, ...(props.components || {}) }}
+      components={{ ...components, ...props.components }}
     />
   )
 }
