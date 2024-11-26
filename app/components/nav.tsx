@@ -7,6 +7,9 @@ const navItems = {
   '/writing': {
     name: 'writing',
   },
+  '/tinkering': {
+    name: 'tinkering',
+  },
 }
 
 export function Navbar() {

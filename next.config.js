@@ -4,7 +4,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: 'getfolks.app',
+      },
+      {
+        protocol: 'https',
+        hostname: 'framerusercontent.com',
       },
     ],
   },

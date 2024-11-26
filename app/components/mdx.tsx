@@ -89,7 +89,7 @@ function createHeading(level) {
 }
 
 function Paragraph({ children }) {
-  return <p className="leading-relaxed mb-6">{children}</p>
+  return <p className="leading-relaxed mb-6 text-lg">{children}</p>
 }
 
 function Blockquote({ children }) {
@@ -119,7 +119,7 @@ let components = {
 
 export function CustomMDX(props) {
   return (
-    <div className="prose prose-lg leading-relaxed">
+    <div className="prose prose-xl leading-relaxed">
       <MDXRemote
         {...props}
         components={{ ...components, ...props.components }}
