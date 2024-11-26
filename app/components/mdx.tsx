@@ -3,6 +3,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import React from 'react'
 import { MDXImage } from './mdx-image'
+import { TweetEmbed, URLPreview } from './embeds'
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -115,6 +116,8 @@ let components = {
   img: MDXImage,
   pre: ({ children }) => <div className="highlight">{children}</div>,
   code: Code,
+  TweetEmbed,
+  URLPreview
 }
 
 export function CustomMDX(props) {
