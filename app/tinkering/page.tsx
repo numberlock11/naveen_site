@@ -20,7 +20,7 @@ export default function Page() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <LinkPreview url={project.link} />
+            <LinkPreview url={project.link} variant="tinkering" />
           </a>
         ))}
       </div>

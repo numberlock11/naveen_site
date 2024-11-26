@@ -10,6 +10,9 @@ const navItems = {
   '/tinkering': {
     name: 'tinkering',
   },
+  '/featuring': {
+    name: 'featuring',
+  },
 }
 
 export function Navbar() {
